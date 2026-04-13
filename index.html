@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Keina Beauty</title>
+
+<style>
+body {margin:0;font-family:'Segoe UI',sans-serif;background:#fff0f5;}
+header {background:linear-gradient(to right,#ff9ecf,#ff6fa5);padding:15px;color:white;display:flex;justify-content:space-between;align-items:center;}
+.cart {background:white;color:#ff4d88;padding:8px 12px;border-radius:20px;cursor:pointer;font-weight:bold;}
+.container {text-align:center;padding:20px;}
+.produk {display:inline-block;background:white;margin:12px;padding:12px;width:200px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:0.3s;}
+.produk:hover {transform:scale(1.05);}
+.produk img {width:100%;height:150px;object-fit:cover;border-radius:10px;}
+button {background:#ff4d88;color:white;border:none;padding:8px;border-radius:10px;margin-top:5px;cursor:pointer;}
+button:hover {background:#e6005c;}
+.popup {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 9998;
+}
+input, select {width:100%;padding:8px;margin-top:5px;border-radius:8px;border:1px solid #ccc;}
+footer {background:linear-gradient(to right,#ff9ecf,#ff6fa5);text-align:center;padding:15px;color:white;margin-top:20px;}
+h3,h4 {color:#ff4d88;}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" onclick="batalkan()"></div>
+
+<header style="flex-direction:column; text-align:center;">
+	<h1 style="margin:5px 0;">Keina Beauty</h1>
+	<p style="margin:0; font-size:14px;">~Cantik gak harus mahal, di Keina Beauty aja~</p>
+
+	<div class="cart" onclick="lihatKeranjang()" style="position:absolute; right:15px; top:15px;">
+		🛒 Keranjang
+	</div>
+</header>
+
+<!-- SEARCH -->
+<div style="text-align:center; padding:15px;">
+<input type="text" id="search" placeholder="Cari produk..." onkeyup="cariProduk()" 
+style="width:60%; padding:10px; border-radius:20px; border:1px solid #ccc;">
+</div>
+
+<div class="container">
+
+<div class="produk"><img src="https://i.pinimg.com/736x/aa/3c/76/aa3c7675d74d6123e880a43b4a382633.jpg"><h3>TONER MONST</h3><p>Rp 155.000</p><button onclick="tambah('Toner MONST',155000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://i.pinimg.com/1200x/54/21/09/5421098ea29edc2e6e87d1bccf0fc893.jpg"><h3>Foundation Y.O.U</h3><p>Rp 110.000</p><button onclick="tambah('Foundation Y.O.U',110000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://i.pinimg.com/736x/a7/20/d0/a720d07e3306c3a1ef6959acd93c795f.jpg"><h3>Bedak Tabur ULTIMA </h3><p>Rp 225.000</p><button onclick="tambah('Bedak Tabur ULTIMA',225000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://i.pinimg.com/1200x/f2/cd/30/f2cd306bcc8b78cedea0a3470c2b848e.jpg"><h3>Cushion SKINTIFIC</h3><p>Rp 155.000</p><button onclick="tambah('Cushion SKINTIFIC',155000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://i.pinimg.com/736x/be/3e/61/be3e61cbcec9d665c6fed928979d1238.jpg"><h3>Moisturizer G2g</h3><p>Rp 65.000</p><button onclick="tambah('Moisturizer G2g',65000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://i.pinimg.com/736x/f3/27/3f/f3273f4c95522c3855134049b0331f84.jpg"><h3>Sunscreen Wardah</h3><p>Rp 50.000</p><button onclick="tambah('Sunscreen Wardah',50000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://images.openai.com/static-rsc-1/Vjw-fqyk3nGP-pQJ9REpqNELoyzxP8E3kbDNQECg007y48n8B8JyVcwNTfBgCn-ML9CPOYa02_8niWorYaTCf_vyYZA3s6GrQbbiTSuvSw-smsMB_slSo8GdX1E05Q33kBqIJC02akn-eKX4twNOlUcaYUnqTSbP3ulcDh32UkmY947IrCo4rHKOSw42YXHAX-9aj9YQj7PeXaCDgCbeuFO0ZKX0bUhT93PVpz1nid__MDBn8hfjh-wf9yd7FwKlfaurEGb4cWlWWRc354_gsQ"><h3>Lip Matte Maybelline</h3><p>Rp 85.000</p><button onclick="tambah('Lip Matte Maybelline',85000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/id-11134207-7ra0s-md4ckp6oajvr15_tn"><h3>Lip Balm Wardah </h3><p>Rp 30.000</p><button onclick="tambah('Lip Balm Wardah',30000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/id-11134207-82252-mhosf8cwgrnk37@resize_w900_nl.webp"><h3>Tinted Sunscreen</h3><p>Rp.103.000</p><button onclick="tambah('Tinted Sunscreen',103000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/sg-11134201-825zu-ml4o60igxkwadf_tn"><h3>Serum Hanasui</h3><p>Rp.70.000</p><button onclick="tambah('Serum Hanasui',70000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/id-11134207-7r98s-m00ib9wxenyz7f@resize_w900_nl.webp"><h3>Clay Mask G2g</h3><p>Rp.49.000</p><button onclick="tambah('Clay Mask G2g',49000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/id-11134207-8224w-mkrvs9mjherm58@resize_w900_nl.webp"><h3>Herborist Lulur</h3><p>Rp.17.000</p><button onclick="tambah('Herborist Lulur',17000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/id-11134207-7ra0t-mcf2ny3u0j4u75.webp"><h3>Body Lation</h3><p>Rp.56.000</p><button onclick="tambah('Body Lation',56000)">+ Keranjang</button></div>
+<div class="produk"><img src="https://down-id.img.susercontent.com/file/id-11134207-7rasa-m3axmvb6hwmn2e.webp"><h3>BnB Maskara</h3><p>Rp.68.000</p><button onclick="tambah('BnB Maskara',68000)">+ Keranjang</button></div>
+
+</div>
+
+<div class="popup" id="popup">
+<h3>🛒 Keranjang</h3>
+<input id="nama" placeholder="Nama">
+<input id="alamat" placeholder="Alamat">
+
+<h4>Pilih Admin</h4>
+<select id="admin">
+<option value="6285260684766">Admin 1</option>
+<option value="6281265030340">Admin 2</option>
+</select>
+
+<h4>Pilih Kurir</h4>
+<select id="kurir" onchange="hitungTotal()">
+<option value="10000">JNT</option>
+<option value="12000">JNE</option>
+<option value="8000">SiCepat</option>
+</select>
+
+<h4>Pembayaran</h4>
+<select id="pembayaran">
+<option>Transfer Bank</option>
+<option>COD</option>
+<option>Dana</option>
+<option>E-Wallet</option>
+</select>
+
+<div id="list"></div>
+
+<p>Subtotal: Rp <span id="subtotal">0</span></p>
+<p>Ongkir: Rp <span id="ongkir">0</span></p>
+<p><b>Total: Rp <span id="total">0</span></b></p>
+
+<button onclick="checkout()">Checkout</button>
+<button onclick="batalkan()">Batal</button>
+</div>
+
+<footer>
+<p>📞 WA 1: 085260684766 | WA 2: 081265030340</p>
+<p>
+📸 IG: <a href="https://instagram.com/keisya_nazifa" target="_blank" style="color:white;">@keisya_nazifa</a><br>
+🎵 TikTok: <a href="https://tiktok.com/@noorqurratulaina" target="_blank" style="color:white;">@noorqurratulaina</a></br>
+</p>
+</footer>
+
+<script>
+let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+
+function simpan(){localStorage.setItem("keranjang", JSON.stringify(keranjang));}
+
+function tambah(nama,harga){
+ let item=keranjang.find(i=>i.nama===nama);
+ if(item){item.qty++;} else {keranjang.push({nama,harga,qty:1});}
+ simpan();alert("Ditambahkan!");
+}
+
+function lihatKeranjang(){
+ let list=document.getElementById("list");
+ let subtotal=0;list.innerHTML="";
+ keranjang.forEach((item)=>{
+ subtotal+=item.harga*item.qty;
+ list.innerHTML+=`${item.nama} x${item.qty}<br>`;
+ });
+ document.getElementById("subtotal").innerText=subtotal;
+ hitungTotal();
+ document.getElementById("popup").style.display="block";
+ document.getElementById("overlay").style.display="block";
+}
+
+function hitungTotal(){
+ let subtotal=parseInt(document.getElementById("subtotal").innerText);
+ let ongkir=parseInt(document.getElementById("kurir").value);
+ document.getElementById("ongkir").innerText=ongkir;
+ document.getElementById("total").innerText=subtotal+ongkir;
+}
+
+function checkout(){
+ let nama=document.getElementById("nama").value;
+ let alamat=document.getElementById("alamat").value;
+ let admin=document.getElementById("admin").value;
+ let pembayaran=document.getElementById("pembayaran").value;
+ let kurirText=document.getElementById("kurir").options[document.getElementById("kurir").selectedIndex].text;
+
+ if(!nama||!alamat){alert("Isi dulu!");return;}
+
+ let pesan=`Halo saya ${nama}%0AAlamat: ${alamat}%0A`;
+ keranjang.forEach(i=>{pesan+=`${i.nama} x${i.qty}%0A`;});
+
+ let total=document.getElementById("total").innerText;
+
+ pesan+=`%0AKurir: ${kurirText}`;
+ pesan+=`%0APembayaran: ${pembayaran}`;
+ pesan+=`%0ATotal: Rp ${total}`;
+
+ let url="https://wa.me/"+admin+"?text="+pesan;
+ window.open(url,"_blank");
+
+ alert("Pesanan berhasil dikirim 🎉");
+ keranjang=[];simpan();
+ document.getElementById("popup").style.display="none";
+ document.getElementById("overlay").style.display="none";
+}
+
+function batalkan(){
+ keranjang=[];simpan();
+ document.getElementById("popup").style.display="none";
+ document.getElementById("overlay").style.display="none";
+}
+
+function cariProduk(){
+ let input = document.getElementById("search").value.toLowerCase();
+ let produk = document.querySelectorAll(".produk");
+
+ produk.forEach((item)=>{
+   let nama = item.innerText.toLowerCase();
+   if(nama.includes(input)){
+     item.style.display="inline-block";
+   } else {
+     item.style.display="none";
+   }
+ });
+}
+</script>
+
+</body>
+</html>
